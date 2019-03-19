@@ -6,7 +6,10 @@
     margin-top: 40px;
   }
 </style>
-<div class="uper">
+<div class="card uper">
+  <div class="card-header">
+    <a href="{{ route('authors.create') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add New Author</a>
+  </div>
   @if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}  
