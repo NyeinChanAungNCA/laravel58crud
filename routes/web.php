@@ -20,3 +20,8 @@ Route::resource('authors', 'AuthorController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('footballers','FootballerController');
+
+// Route::get('footballer','FootballerController@create');
+// Route::post('footballer','FootballerController@store');
