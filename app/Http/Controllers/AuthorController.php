@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Author;
+use App\Http\Requests\StoreAuthor;
 
 class AuthorController extends Controller
 {
@@ -35,15 +36,16 @@ class AuthorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAuthor $request)
     {
-        $validatedData = $request->validate([
-             'name' => 'required|max:255',
-             'phone' => 'required',
-             'gender' => 'required',
-             'address' => 'required',
-         ]);
-         $author = Author::create($validatedData);
+        // $validatedData = $request->validate([
+        //      'name' => 'required|max:255',
+        //      'phone' => 'required',
+        //      'gender' => 'required',
+        //      'address' => 'required',
+        //  ]);
+        //  $author = Author::create($validatedData);
+         $author = Author::create($request->all());
 
          return redirect('/authors')->with('success', 'Author is successfully saved');
     }
@@ -79,14 +81,16 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAuthor $request, $id)
     {
-        $validatedData = $request->validate([
-             'name' => 'required|max:255',
-             'phone' => 'required',
-             'gender' => 'required',
-             'address' => 'required',
-         ]);
+        // $validatedData = $request->validate([
+        //      'name' => 'required|max:255',
+        //      'phone' => 'required',
+        //      'gender' => 'required',
+        //      'address' => 'required',
+        //  ]);
+        // Author::whereId($id)->update($validatedData);
+        $validatedData = $request->validated();
         Author::whereId($id)->update($validatedData);
 
         return redirect('/authors')->with('success', 'Author is successfully updated');
